@@ -4,19 +4,45 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
-import { TamaguiProvider } from "@tamagui/core";
-import type { PropsWithChildren } from "react";
-import React from "react";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect, type PropsWithChildren } from "react";
 import { useColorScheme } from "react-native";
+import {
+  initialWindowMetrics,
+  SafeAreaProvider,
+} from "react-native-safe-area-context";
+import { TamaguiProvider, Theme } from "tamagui";
 
-export const Providers: React.FC<PropsWithChildren> = ({ children }) => {
+SplashScreen.preventAutoHideAsync();
+
+export function RootLayout({ children }: PropsWithChildren) {
   const colorScheme = useColorScheme();
 
+  const [loaded] = useFonts({
+    Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
+    InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
+  });
+
+  useEffect(() => {
+    if (loaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded]);
+
+  if (!loaded) return null;
+
   return (
-    <TamaguiProvider config={config}>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        {children}
-      </ThemeProvider>
-    </TamaguiProvider>
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <TamaguiProvider config={config}>
+        <Theme name={colorScheme}>
+          <ThemeProvider
+            value={colorScheme === "light" ? DefaultTheme : DarkTheme}
+          >
+            {children}
+          </ThemeProvider>
+        </Theme>
+      </TamaguiProvider>
+    </SafeAreaProvider>
   );
-};
+}
