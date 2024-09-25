@@ -8,8 +8,12 @@
       ]
     }
   },
+  "typeRoots": [
+    "./src/@types",
+    "./node_modules/@types"
+  ],
   "include": [
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
   ]
 }

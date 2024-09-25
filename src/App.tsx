@@ -10,8 +10,9 @@ import {
   YStack,
 } from "tamagui";
 import { SafeAreaViewStyled, YStackStyled } from "./components";
+import { withConditionalStorybook } from "@/lib/storybook";
 
-export default function App() {
+function App() {
   return (
     <RootLayout>
       <SafeAreaViewStyled edges={["bottom", "top"]}>
@@ -49,3 +50,5 @@ export default function App() {
     </RootLayout>
   );
 }
+
+export default withConditionalStorybook(App);

@@ -1,5 +1,9 @@
 {
   "cSpell.words": [
     "Tamagui"
-  ]
+  ],
+  "workbench.editor.customLabels.patterns": {
+    "**/index.{ts,js,tsx,jsx}": "${dirname}"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
 }

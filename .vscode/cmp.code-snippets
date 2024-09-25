@@ -1,0 +1,14 @@
+{
+	"New Component": {
+		"scope": "typescriptreact",
+		"prefix": "newcomp",
+		"body": [
+			"interface $1Props {};",
+			"",
+			"const $1: React.FC<$1Props> = () => {",
+			"\treturn null",
+			"};"
+		],
+		"description": "Create a new React component"
+	}
+}
