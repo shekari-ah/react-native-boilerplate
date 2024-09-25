@@ -28,6 +28,7 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>com.boilerplate</string>
+          <string>com.boilerplate</string>
         </array>
       </dict>
       <dict>
